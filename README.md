@@ -1,22 +1,21 @@
-# BlackoutADR-NS3-FANET
-BlackoutADR: Exploiting Adaptive Data Rate Vulnerabilities in LoRaWAN-Based FANETs
 
-Overview
+#BlackoutADR: Exploiting ADR Vulnerabilities in LoRaWAN-based FANETs
+#Overview
 This repository contains the implementation of BlackoutADR, an adversarial attack targeting the Adaptive Data Rate (ADR) mechanism in LoRaWAN-based Flying Ad Hoc Networks (FANETs). The project simulates a FANET with 20 UAVs using NS-3, where the leader node (Node 0) acts as the central gateway equipped with Intrusion Detection Systems (IDS). BlackoutADR manipulates signal metrics (RSSI/SNR) to trick UAVs into increasing transmission power, causing power drain and potential DDoS attacks. The simulation evaluates IDS effectiveness using Snort, a LoRaWAN-specific IDS (KLD/HD algorithms), and machine learning (ML)-based IDS models, with findings showing evasion by BlackoutADR’s subtle manipulations.
-Key Features
+#Key Features
 FANET Setup: 20 UAV nodes, with Node 0 as the backbone UAV (gateway) in a star-of-stars topology.
 LoRaWAN Protocol: Implements LoRaWAN with ADR, vulnerable to signal manipulation.
 Attack: BlackoutADR targets ADR to increase power consumption via crafted packets and delayed ACKs.
-IDS Evaluation:
+#IDS Evaluation:
 Snort: Signature-based IDS with custom rules for packet analysis.
 LoRaWAN-based IDS: Uses KLD and HD algorithms to detect join procedure anomalies.
 ML-based IDS: Classifies traffic using features like packet size and RSSI for advanced detection.
 Simulation: NS-3 with NetAnim visualization, Kali Linux tools (e.g., Scapy, Wireshark) for attack and analysis.
 Repository Structure
-Main Directory:
+#Main Directory:
 run_IDS_fanet_with_snort.sh: Shell script to automate the NS-3 simulation, Snort IDS, and attack execution.
 fanet_IDS_zeek.sh: Script to run Zeek-based IDS analysis on FANET traffic.
-attacker.py: Python script to simulate BlackoutADR by manipulating ADR (e.g., packet delays, payload sizes).
+attacker.py: Example Python script to simulate BlackoutADR by manipulating ADR (e.g., packet delays, payload sizes).
 graphs.py: Script to generate visualization graphs (e.g., RSSI, power over time).
 utils.py: Utility functions for data processing and simulation.
 Fanet3DLoraWan.xml, Fanet3DLoraWanleader.xml: NetAnim XML files for visualizing the FANET simulation.
@@ -88,7 +87,7 @@ bash
 # Start NS-3 simulation
 ./waf --run scratch/fanet_simulation &
 sleep 5  # Wait for simulation to start
-# Launch attacker script
+# Launch attacker script (example)
 python3 attacker.py &
 # Run Snort in real-time
 sudo snort -i wlan0 -A console -c /etc/snort/snort.lua &
@@ -110,11 +109,11 @@ Run Zeek-based IDS:
 bash
 ./fanet_IDS_zeek.sh
 Processes PCAP files (e.g., Fanetleaderzeek-*.pcap) and outputs analysis (e.g., fanet_data_with_attack_zeek.csv).
-4. Run the Attack Script Independently (Optional)
-Execute BlackoutADR Attack:
+4. Run the Attack Script (Example)
+Execute BlackoutADR Attack (Example):
 bash
 python3 attacker.py
-Targets Node 0 (192.168.1.1, port 9), sending packets with random sizes (50-1024 bytes) and delays (0.5-2.0 seconds).
+This is an example script that targets Node 0 (192.168.1.1, port 9), sending packets with random sizes (50-1024 bytes) and delays (0.5-2.0 seconds). In our study, the red team pentester researcher also performed perturbations directly in the terminal to manipulate FANET traffic.
 5. Run ML-based IDS (Optional)
 Execute ML-IDS:
 bash
@@ -131,10 +130,10 @@ BlackoutADR Attack
 Objective: Exploit ADR to cause power drain by increasing transmission power.
 Methods:
 Manipulate RSSI/SNR via simulated noise in NS-3.
-Fake network conditions with crafted packets using attacker.py.
+Fake network conditions with crafted packets.
 Delay ACKs to force retransmissions at higher power.
 Implementation:
-attacker.py sends packets with random sizes and delays to Node 0, simulating degraded conditions.
+attacker.py provides an example of sending packets with random sizes and delays to Node 0, simulating degraded conditions. The actual attack involved the red team pentester researcher performing perturbations directly in the terminal to manipulate FANET traffic, targeting ADR vulnerabilities.
 IDS Approaches
 Snort IDS:
 Deployed on Node 0, monitors traffic in real-time and offline via PCAP files (e.g., Fanet3D-leader-n-0-0.pcap).
@@ -160,8 +159,8 @@ Lakew et al., "Routing in Flying Ad Hoc Networks: A Comprehensive Survey," 2020.
 Danish et al., "Network Security in LoRaWAN: Challenges and Solutions," 2018.
 Hassler et al., "Cyber-Physical Intrusion Detection System for Unmanned Aerial Vehicles," IEEE T-ITS, 2024.
 Paredes et al., "LoRaWAN Architecture for IoT Applications," 2023.
-Notes
-Large Datasets: The Datasets_processed/ folder includes some CSV files, but large datasets are excluded due to GitHub’s file size limits. Users can request access from the repository owner.
-Simulation Scripts: The scratch/ folder contains the main simulation scripts to be placed in NS-3’s scratch/ directory, ensuring users can run the simulation directly.
-Commands Updated: Added fanet_IDS_zeek.sh for Zeek analysis and clarified NetAnim usage with specific XML files.
-You can copy this into your README.md file on GitHub to update it. Let me know if you need further adjustments!
+Changes Made
+Attack Script Clarification:
+In "Running the Simulation" (Step 4), updated to note that attacker.py is an example, and the red team pentester performed perturbations in the terminal.
+In "BlackoutADR Attack" section, added that attacker.py is an example, with the actual attack involving terminal-based perturbations by the red team.
+You can copy this updated content into your README.md file on GitHub. Let me know if you need further adjustments!

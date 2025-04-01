@@ -185,9 +185,4 @@ Uses models from `H5_trained_models/` (e.g., `fnn_ids_model.h5`) to classify tra
 #### ML-based IDS:
 - Uses models in `H5_trained_models/` to classify traffic in real-time using PyNs3.
 
-## Findings
-- **ADR Response**: Node 0 increases power to 20 dBm when RSSI drops below -85 dBm.
-- **Snort Detection**: Fails to flag BlackoutADR due to gradual manipulations.
-- **LoRaWAN IDS**: KLD outperforms HD but misses subtle attacks.
-- **ML-IDS**: Shows potential for detecting complex patterns, ongoing evaluation.
 

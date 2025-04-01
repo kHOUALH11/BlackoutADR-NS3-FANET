@@ -185,4 +185,7 @@ Uses models from `H5_trained_models/` (e.g., `fnn_ids_model.h5`) to classify tra
 #### ML-based IDS:
 - Uses models in `H5_trained_models/` to classify traffic in real-time using PyNs3.
 
+## Disclaimer
+
+The simulation of this project also involved the use of additional Kali Linux tools and terminal-based commands for simulating the attack. These tools and commands are not part of this repository but were utilized to enhance the attack simulation. The scripts and tools included in this repository represent the core simulation setup, and other resources, including Kali Linux tools (e.g., Scapy, Wireshark), were used for vulnerability assessment and attack execution outside the scope of the repository itself (more detailes in the paper ).
 

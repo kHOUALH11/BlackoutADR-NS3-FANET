@@ -2,22 +2,22 @@
 ```markdown
 # BlackoutADR: Exploiting ADR Vulnerabilities in LoRaWAN-based FANETs
 
-## Overview
-This repository contains the implementation of **BlackoutADR**, an adversarial attack targeting the Adaptive Data Rate (ADR) mechanism in LoRaWAN-based Flying Ad Hoc Networks (FANETs). The project simulates a FANET with 20 UAVs using NS-3, where the leader node (Node 0) acts as the central gateway equipped with Intrusion Detection Systems (IDS). BlackoutADR manipulates signal metrics (RSSI/SNR) to trick UAVs into increasing transmission power, causing power drain and potential DDoS attacks. The simulation evaluates IDS effectiveness using Snort, a LoRaWAN-specific IDS (KLD/HD algorithms), and machine learning (ML)-based IDS models, with findings showing evasion by BlackoutADR’s subtle manipulations.
+# Overview
+This repository contains the implementation of BlackoutADR, an adversarial attack targeting the Adaptive Data Rate (ADR) mechanism in LoRaWAN-based Flying Ad Hoc Networks (FANETs). The project simulates a FANET with 20 UAVs using NS-3, where the leader node (Node 0) acts as the central gateway equipped with Intrusion Detection Systems (IDS). BlackoutADR manipulates signal metrics (RSSI/SNR) to trick UAVs into increasing transmission power, causing power drain and potential DDoS attacks. The simulation evaluates IDS effectiveness using Snort, a LoRaWAN-specific IDS (KLD/HD algorithms), and machine learning (ML)-based IDS models, with findings showing evasion by BlackoutADR’s subtle manipulations.
 
-## Key Features
-- **FANET Setup**: 20 UAV nodes, with Node 0 as the backbone UAV (gateway) in a star-of-stars topology.
-- **LoRaWAN Protocol**: Implements LoRaWAN with ADR, vulnerable to signal manipulation.
-- **Attack**: BlackoutADR targets ADR to increase power consumption via crafted packets and delayed ACKs.
-- **IDS Evaluation**:
-  - **Snort**: Signature-based IDS with custom rules for packet analysis.
-  - **LoRaWAN-based IDS**: Uses KLD and HD algorithms to detect join procedure anomalies.
-  - **ML-based IDS**: Classifies traffic using features like packet size and RSSI for advanced detection.
-- **Simulation**: NS-3 with NetAnim visualization, Kali Linux tools (e.g., Scapy, Wireshark) for attack and analysis.
+# Key Features
+- FANET Setup: 20 UAV nodes, with Node 0 as the backbone UAV (gateway) in a star-of-stars topology.
+- LoRaWAN Protocol: Implements LoRaWAN with ADR, vulnerable to signal manipulation.
+- Attack: BlackoutADR targets ADR to increase power consumption via crafted packets and delayed ACKs.
+- IDS Evaluation:
+  - Snort: Signature-based IDS with custom rules for packet analysis.
+  - LoRaWAN-based IDS: Uses KLD and HD algorithms to detect join procedure anomalies.
+  - ML-based IDS: Classifies traffic using features like packet size and RSSI for advanced detection.
+- Simulation: NS-3 with NetAnim visualization, Kali Linux tools (e.g., Scapy, Wireshark) for attack and analysis.
 
-## Repository Structure
+# Repository Structure
 
-### Main Directory:
+## Main Directory:
 - `run_IDS_fanet_with_snort.sh`: Shell script to automate the NS-3 simulation, Snort IDS, and attack execution.
 - `fanet_IDS_zeek.sh`: Script to run Zeek-based IDS analysis on FANET traffic.
 - `attacker.py`: Example Python script to simulate BlackoutADR by manipulating ADR (e.g., packet delays, payload sizes).
@@ -31,16 +31,16 @@ This repository contains the implementation of **BlackoutADR**, an adversarial a
 - `implemnationreport.pdf`: Implementation report detailing the project setup and findings.
 - `CMakeLists.txt, CONTRIBUTING.md, LICENSE, README.md`: Standard repository files.
 
-### Subdirectories:
-- **Datasets_processed/**: Contains processed CSV datasets (e.g., traffic features, attack data). Note: Not all datasets are included due to large file sizes; contact the repository owner for access to full datasets.
-- **H5_trained_models/**: Contains trained ML-IDS models:
+## Subdirectories:
+- Datasets_processed/: Contains processed CSV datasets (e.g., traffic features, attack data). Note: Not all datasets are included due to large file sizes; contact the repository owner for access to full datasets.
+- H5_trained_models/: Contains trained ML-IDS models:
   - `bilstm_ids_model.h5`: BiLSTM model for traffic classification.
   - `cnn_ids_model.h5`: CNN model for traffic classification.
   - `fnn_ids_model.h5`: FNN model for traffic classification.
   - `lorawan_ids_model.h5`: Model for LoRaWAN-specific anomaly detection.
   - `lstm_ids_model.h5`: LSTM model for traffic classification.
-- **attackscript/**: Contains attack-related scripts (e.g., attacker.py duplicate, additional attack utilities).
-- **scratch/**: NS-3 simulation scripts to be placed in the NS-3 scratch/ directory for running the FANET simulation.
+- attackscript/: Contains attack-related scripts (e.g., attacker.py duplicate, additional attack utilities).
+- scratch/: NS-3 simulation scripts to be placed in the NS-3 scratch/ directory for running the FANET simulation.
 
 ## Prerequisites
 - **Operating System**: Linux (e.g., Ubuntu 20.04 recommended; Windows users can use WSL).
